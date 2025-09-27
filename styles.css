@@ -1,0 +1,408 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #333333;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Custom Cursor - CHANGED: Always visible, smaller green circle, text inside */
+.cursor-dot {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: #2563eb;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+    mix-blend-mode: difference;  /* ADD THIS LINE */
+}
+
+.cursor-dot.hover {
+    width: 30px;
+    height: 30px;
+    background: #00ff37;
+    border: 2px solid #000000;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    mix-blend-mode: normal;  
+}
+
+.cursor-text {
+    position: fixed;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.05s ease;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.cursor-text.show {
+    opacity: 1;
+}
+
+/* Header - CHANGED: White background with blue accents */
+.header {
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e7eb;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h2 {
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: #666666;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+/* Hero Section - CHANGED: White/blue gradient background */
+.hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #ffffff 100%);
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #374151;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Masterclasses Section */
+.masterclasses {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+.masterclasses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* CHANGED: Smaller, compact cards with white/blue design */
+.masterclass-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    position: relative;
+    /* height: 400px;  REMOVE THIS */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;          /* NEW */
+    flex-direction: column; /* NEW */
+}
+
+.masterclass-card:hover {
+    transform: translateY(-8px);
+    border-color: #2563eb;
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+/* CHANGED: Smaller image section with blue gradient */
+.card-image {
+    height: 120px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+}
+
+.image-placeholder {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+/* CHANGED: Removed live badge */
+.live-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgb(0, 17, 79);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ffffff;
+}
+
+.live-dot {
+    width: 6px;
+    height: 6px;
+    background: #fb8a00;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;           /* NEW: takes up space */
+    justify-content: space-between;
+}
+
+
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.card-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.price-original {
+    font-size: 1.1rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+}
+
+/* CHANGED: Tag-based layout instead of bullet points */
+.card-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    width: 100%; 
+}
+
+.tag {
+    background: #f3f4f6;     /* shaded pill */
+    color: #374151;
+    padding: 8px 12px;
+    border-radius: 8px;      /* less “bubble”, more stretched */
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;             /* NEW: makes it stretch full width */
+    box-sizing: border-box;
+    border: 1px solid #e5e7eb;
+}
+
+/* CHANGED: Blue button design */
+.card-btn {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: none;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    align-self: flex-start; /* NEW */
+}
+
+.card-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+}
+
+/* Footer - CHANGED: Light theme */
+.footer {
+    padding: 40px 0;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    color: #6b7280;
+    background: #f9fafb;
+}
+
+/* Custom accent colors for partial text */
+:root {
+    --accent-orange: #fb8a00;
+  }
+  
+  /* For "WC School" header logo */
+  .logo .accent {
+    color: var(--accent-orange);
+  }
+  
+  /* For "AI Masterclasses" hero title */
+  .hero-title .accent-solid {
+    background: none !important;
+    -webkit-text-fill-color: var(--accent-orange) !important; /* Safari/Chrome */
+    color: var(--accent-orange) !important;                   /* Fallback */
+  }  
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        cursor: auto;
+    }
+    
+    .cursor-dot,
+    .cursor-text {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .masterclasses-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .masterclass-card {
+        height: auto;
+    }
+    
+    .card-content {
+        height: auto;
+    }
+    
+    .nav {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .masterclasses-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+/* CHANGED: Blue glow effect on hover instead of red */
+.masterclass-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(37, 99, 235, 0.05) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.masterclass-card:hover::after {
+    opacity: 1;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
